@@ -17,7 +17,7 @@ enum DepthLevel: Int, CaseIterable, Codable {
     
     var description: String {
         switch self {
-        case .light:   return "Just a daily check-in and simple weekly recap"
+        case .light:   return "One tap, once a day"
         case .reflect: return "More patterns, still gentle"
         case .deep:    return "Richer summaries and longer reflections"
         }
