@@ -2,6 +2,8 @@ import SwiftUI
 
 struct WeeklySummaryView: View {
     @Environment(\.dismiss) private var dismiss
+    @State private var insights: [String] = []
+    @State private var isLoading = true
     
     private let storage = StorageService.shared
     private var depthLevel: DepthLevel { SettingsService.shared.depthLevel }
@@ -10,13 +12,9 @@ struct WeeklySummaryView: View {
         storage.lastSevenDays()
     }
     
-    private var insights: [String] {
-        WeeklySummaryView.generateInsights(from: entries, depth: depthLevel)
-    }
-    
-    // Level 1 insights for safe sharing
+    // Level 1 insights for safe sharing (fallback to static for sharing)
     private var shareInsights: [String] {
-        WeeklySummaryView.generateInsights(from: entries, depth: .light)
+        insights.isEmpty ? WeeklySummaryView.generateInsights(from: entries, depth: .light) : insights
     }
     
     var body: some View {
@@ -48,23 +46,34 @@ struct WeeklySummaryView: View {
                         .foregroundColor(Color(red: 0.2, green: 0.2, blue: 0.2))
                     
                     // Insights
-                    VStack(alignment: .leading, spacing: 16) {
-                        ForEach(insights, id: \.self) { insight in
-                            Text(insight)
-                                .font(.system(size: 17, weight: .regular, design: .serif))
-                                .foregroundColor(Color(red: 0.3, green: 0.3, blue: 0.3))
-                                .fixedSize(horizontal: false, vertical: true)
+                    if isLoading {
+                        VStack(spacing: 16) {
+                            ProgressView()
+                                .scaleEffect(1.2)
+                            Text("Reflecting on your week...")
+                                .font(.system(size: 15, weight: .regular))
+                                .foregroundColor(.secondary)
                         }
+                        .padding(.vertical, 40)
+                    } else {
+                        VStack(alignment: .leading, spacing: 16) {
+                            ForEach(insights, id: \.self) { insight in
+                                Text(insight)
+                                    .font(.system(size: 17, weight: .regular, design: .serif))
+                                    .foregroundColor(Color(red: 0.3, green: 0.3, blue: 0.3))
+                                    .fixedSize(horizontal: false, vertical: true)
+                            }
+                        }
+                        .padding(.horizontal, 24)
+                        .padding(.vertical, 24)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .background(
+                            RoundedRectangle(cornerRadius: 16)
+                                .fill(Color.white)
+                                .shadow(color: Color.black.opacity(0.04), radius: 8, y: 2)
+                        )
+                        .padding(.horizontal, 24)
                     }
-                    .padding(.horizontal, 24)
-                    .padding(.vertical, 24)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(
-                        RoundedRectangle(cornerRadius: 16)
-                            .fill(Color.white)
-                            .shadow(color: Color.black.opacity(0.04), radius: 8, y: 2)
-                    )
-                    .padding(.horizontal, 24)
                     
                     // Streak message (subtle, below insights)
                     if let streakMessage = storage.streakMessage() {
@@ -108,6 +117,29 @@ struct WeeklySummaryView: View {
             }
         }
         .navigationBarHidden(true)
+        .task {
+            await loadInsights()
+        }
+    }
+    
+    // MARK: - AI Insight Loading
+    
+    private func loadInsights() async {
+        isLoading = true
+        
+        // Try AI generation first
+        if let aiInsights = await GeminiService.shared.generateWeeklyInsights(from: entries, depth: depthLevel) {
+            await MainActor.run {
+                insights = aiInsights
+                isLoading = false
+            }
+        } else {
+            // Fallback to static insights if AI fails
+            await MainActor.run {
+                insights = WeeklySummaryView.generateInsights(from: entries, depth: depthLevel)
+                isLoading = false
+            }
+        }
     }
     
     // MARK: - Share

@@ -52,7 +52,7 @@ struct SettingsView: View {
                 }
                 .padding(.horizontal, 24)
                 
-                Text("Light is enough.")
+                Text("Nothing is too little.")
                     .font(.system(size: 15, weight: .regular))
                     .foregroundColor(.secondary)
                 

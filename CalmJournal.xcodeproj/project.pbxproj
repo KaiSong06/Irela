@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		581D598B2EF0E8A100195D53 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 581D598A2EF0E8A100195D53 /* Supabase */; };
+		581D598D2EF0F15600195D53 /* GeminiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581D598C2EF0F15600195D53 /* GeminiService.swift */; };
 		A1000001230A0001 /* CalmJournalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001230A0000 /* CalmJournalApp.swift */; };
 		A1000001230A0003 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001230A0002 /* ContentView.swift */; };
 		A1000001230A0005 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1000001230A0004 /* Assets.xcassets */; };
@@ -16,15 +18,19 @@
 		A1000001230A0016 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001230A0017 /* UserSettings.swift */; };
 		A1000001230A0020 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001230A0021 /* StorageService.swift */; };
 		A1000001230A0022 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001230A0023 /* NotificationService.swift */; };
+		A1000001230A0024 /* SupabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001230A0025 /* SupabaseService.swift */; };
 		A1000001230A0030 /* CheckInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001230A0031 /* CheckInView.swift */; };
 		A1000001230A0032 /* WeeklySummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001230A0033 /* WeeklySummaryView.swift */; };
 		A1000001230A0034 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001230A0035 /* OnboardingView.swift */; };
 		A1000001230A0036 /* RecapCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001230A0037 /* RecapCardView.swift */; };
 		A1000001230A0038 /* DinoCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001230A0039 /* DinoCharacter.swift */; };
 		A1000001230A0040 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001230A0041 /* SettingsView.swift */; };
+		A1000001230A0050 /* SupabaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000001230A0051 /* SupabaseConfig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		581D598C2EF0F15600195D53 /* GeminiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeminiService.swift; sourceTree = "<group>"; };
+		A10000012300AAAA /* CalmJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalmJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1000001230A0000 /* CalmJournalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalmJournalApp.swift; sourceTree = "<group>"; };
 		A1000001230A0002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A1000001230A0004 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -34,13 +40,14 @@
 		A1000001230A0017 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		A1000001230A0021 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		A1000001230A0023 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		A1000001230A0025 /* SupabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseService.swift; sourceTree = "<group>"; };
 		A1000001230A0031 /* CheckInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInView.swift; sourceTree = "<group>"; };
 		A1000001230A0033 /* WeeklySummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklySummaryView.swift; sourceTree = "<group>"; };
 		A1000001230A0035 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		A1000001230A0037 /* RecapCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecapCardView.swift; sourceTree = "<group>"; };
 		A1000001230A0039 /* DinoCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DinoCharacter.swift; sourceTree = "<group>"; };
 		A1000001230A0041 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		A10000012300AAAA /* CalmJournal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalmJournal.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1000001230A0051 /* SupabaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseConfig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				581D598B2EF0E8A100195D53 /* Supabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,9 +73,11 @@
 		A1000001230DDDDD /* CalmJournal */ = {
 			isa = PBXGroup;
 			children = (
+				581D598C2EF0F15600195D53 /* GeminiService.swift */,
 				A1000001230A0000 /* CalmJournalApp.swift */,
 				A1000001230A0002 /* ContentView.swift */,
 				A1000001230A0004 /* Assets.xcassets */,
+				A1000001230SSSSS /* Config */,
 				A1000001230FFFFF /* Models */,
 				A1000001230GGGGG /* Services */,
 				A1000001230HHHHH /* Views */,
@@ -99,6 +109,7 @@
 			children = (
 				A1000001230A0021 /* StorageService.swift */,
 				A1000001230A0023 /* NotificationService.swift */,
+				A1000001230A0025 /* SupabaseService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -114,6 +125,14 @@
 				A1000001230A0041 /* SettingsView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		A1000001230SSSSS /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				A1000001230A0051 /* SupabaseConfig.swift */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,6 +179,9 @@
 				Base,
 			);
 			mainGroup = A1000001230CCCCC;
+			packageReferences = (
+				581D59892EF0E84A00195D53 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
 			productRefGroup = A1000001230EEEEE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -188,17 +210,20 @@
 				A1000001230A0001 /* CalmJournalApp.swift in Sources */,
 				A1000001230A0003 /* ContentView.swift in Sources */,
 				A1000001230A0010 /* Entry.swift in Sources */,
+				581D598D2EF0F15600195D53 /* GeminiService.swift in Sources */,
 				A1000001230A0012 /* Prompt.swift in Sources */,
 				A1000001230A0014 /* StreakState.swift in Sources */,
 				A1000001230A0016 /* UserSettings.swift in Sources */,
 				A1000001230A0020 /* StorageService.swift in Sources */,
 				A1000001230A0022 /* NotificationService.swift in Sources */,
+				A1000001230A0024 /* SupabaseService.swift in Sources */,
 				A1000001230A0030 /* CheckInView.swift in Sources */,
 				A1000001230A0032 /* WeeklySummaryView.swift in Sources */,
 				A1000001230A0034 /* OnboardingView.swift in Sources */,
 				A1000001230A0036 /* RecapCardView.swift in Sources */,
 				A1000001230A0038 /* DinoCharacter.swift in Sources */,
 				A1000001230A0040 /* SettingsView.swift in Sources */,
+				A1000001230A0050 /* SupabaseConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,7 +427,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		581D59892EF0E84A00195D53 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		581D598A2EF0E8A100195D53 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 581D59892EF0E84A00195D53 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A1000001230MMMMM /* Project object */;
 }
-

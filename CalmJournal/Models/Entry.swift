@@ -11,7 +11,7 @@ struct Entry: Codable, Identifiable {
     let tertiaryResponse: String?       // Level 3 follow-up response
     let timestamp: TimeInterval
     
-    // Full initializer
+    // Standard initializer for new entries
     init(
         promptId: String,
         choice: String,
@@ -31,6 +31,29 @@ struct Entry: Codable, Identifiable {
         self.timestamp = Date().timeIntervalSince1970
     }
     
+    // Full initializer for cloud sync (preserves all fields)
+    init(
+        id: UUID,
+        date: String,
+        promptId: String,
+        choice: String,
+        secondaryPromptId: String? = nil,
+        secondaryResponse: String? = nil,
+        tertiaryPromptId: String? = nil,
+        tertiaryResponse: String? = nil,
+        timestamp: TimeInterval
+    ) {
+        self.id = id
+        self.date = date
+        self.promptId = promptId
+        self.choice = choice
+        self.secondaryPromptId = secondaryPromptId
+        self.secondaryResponse = secondaryResponse
+        self.tertiaryPromptId = tertiaryPromptId
+        self.tertiaryResponse = tertiaryResponse
+        self.timestamp = timestamp
+    }
+    
     static func todayString() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
@@ -47,4 +70,3 @@ struct Entry: Codable, Identifiable {
         tertiaryResponse != nil
     }
 }
-

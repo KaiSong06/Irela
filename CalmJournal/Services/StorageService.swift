@@ -1,6 +1,6 @@
 import Foundation
 
-// Simple local storage using UserDefaults
+// Offline-first local storage with cloud sync
 // One entry per day max
 final class StorageService {
     static let shared = StorageService()
@@ -23,6 +23,11 @@ final class StorageService {
         
         // Update streak after saving entry
         updateStreakOnCheckIn(for: entry.date)
+        
+        // Sync to cloud (fire and forget)
+        Task {
+            await SupabaseService.shared.uploadEntry(entry)
+        }
     }
     
     func loadAll() -> [Entry] {
@@ -50,6 +55,19 @@ final class StorageService {
     
     func hasSevenDaysOfData() -> Bool {
         lastSevenDays().count >= 7
+    }
+    
+    // MARK: - Cloud Sync
+    
+    /// Sync local entries with cloud (call on app launch)
+    func syncWithCloud() async {
+        let localEntries = loadAll()
+        let mergedEntries = await SupabaseService.shared.syncAll(localEntries: localEntries)
+        
+        // Save merged entries locally
+        if let data = try? JSONEncoder().encode(mergedEntries) {
+            UserDefaults.standard.set(data, forKey: key)
+        }
     }
     
     // MARK: - Streak Storage
@@ -169,4 +187,3 @@ final class StorageService {
         return formatter.date(from: string)
     }
 }
-
